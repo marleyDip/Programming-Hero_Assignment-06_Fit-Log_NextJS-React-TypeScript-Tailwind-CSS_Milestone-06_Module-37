@@ -10,12 +10,17 @@
   --font-secondary: var(--font-oswald);
 
   /* FitLog colors */
-  --color-bg: #0b0d0d;
-  --color-panel: #111414;
+  --color-bg: #0c0d10;
+  --color-border: #2a2b2f;
+  --color-panel: #1c1f26;
   --color-panel-2: #171b1a;
   --color-line: #2a302e;
-  --color-muted: #8d9691;
-  --color-text: #f4f6f2;
+  --color-line-2: #0f1115;
+  --color-muted: #f5f6f2;
+  --color-muted-soft: #9ca3af;
+  --color-muted-2: #b7b9bd;
+  --color-muted-secondary: #8d9691;
+  --color-text: #ffffff;
 
   --color-primary: #c2f800;
   --color-secondary: #9fc700;
@@ -24,21 +29,197 @@
 
 /* ===== BASE ===== */
 
-/* @layer base {
-} */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100%;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-inter), system-ui, sans-serif;
+
+    /* @apply font-primary bg-bg text-text min-h-full m-0; */
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: #080a09;
+  }
+
+  /* Custom Scrollbar tracking */
+  * {
+    scrollbar-color: #2a2b2f #0b0c0e;
+  }
+}
 
 /* ===== CUSTOM UTILITIES ===== */
-/* @utility {
+
+/* @utility font-display {
+  font-family: var(--font-oswald), sans-serif;
 } */
 
+@utility container-page {
+  width: 100%;
+  max-width: var(--breakpoint-xl); /* Standardizes to 1280px */
+  margin-inline: auto;
+
+  @apply px-4 sm:px-5 md:px-6;
+}
+
+@utility container-page-css {
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    /* md breakpoint (640px) */
+    padding-inline: 1.5rem;
+  }
+
+  @media (width >= 64rem) {
+    /* lg breakpoint (1024px) */
+    padding-inline: 2rem;
+  }
+}
+
 /* Badges */
+@utility badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+@utility badge-filled {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+@utility badge-outline {
+  border: 1px solid #3a3b40;
+  background-color: transparent;
+  color: var(--color-text);
+}
 
 /* Tag */
+@utility tag-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #2a2b2f;
+  border-radius: 9999px;
+  background-color: rgb(204 255 0 / 8%);
+  color: var(--color-acid);
+  padding: 0.15rem 0.6rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
 /* Text */
+@utility line-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
 
 /* Visual Effects */
+@utility grid-noise {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 2.5%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 2.5%) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+@utility glow {
+  box-shadow:
+    0 0 0 1px rgb(204 255 0 / 12%),
+    0 18px 70px rgb(204 255 0 / 7%);
+
+  /* High-performance drop shadow (great for icons, text, and transparent shapes) */
+  /* filter: drop-shadow(0 0 12px rgba(194, 248, 0, 0.45)); */
+
+  /* Standard box shadow (better if you want a boxy container edge glow) */
+  /* box-shadow: 0 0 20px 2px rgba(194, 248, 0, 0.25); */
+
+  /* Creates a soft, glowing aura using your primary brand color */
+  /* box-shadow:
+    0 0 15px 2px rgba(194, 248, 0, 0.3),
+    0 0 30px 4px rgba(194, 248, 0, 0.1);
+  border-color: var(--color-primary); */
+}
+
+@utility card-hover {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+  &:hover {
+    transform: translateY(-4px);
+    border-color: #4b564f;
+    background-color: #141817;
+  }
+}
+
+@utility hero-gradient {
+  background:
+    radial-gradient(circle at 70% 35%, rgb(204 255 0 / 12%), transparent 24%),
+    radial-gradient(circle at 35% 70%, rgb(70 80 75 / 13%), transparent 28%);
+}
 
 /* ScrollBar */
+@utility hide-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 /* ===== ANIMATION  ===== */
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-toast-in {
+  animation: toast-in 180ms ease-out;
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@utility animate-pulse-soft {
+  animation: pulse-soft 1.4s ease-in-out infinite;
+}

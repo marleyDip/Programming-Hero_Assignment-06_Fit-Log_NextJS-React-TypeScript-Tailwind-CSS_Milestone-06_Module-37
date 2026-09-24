@@ -26,15 +26,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${oswald.variable} h-full antialiased`}
-    >
-      <Navbar />
+    <html lang="en" className="h-full">
+      <body
+        className={`${inter.variable} ${oswald.variable} min-h-full antialiased`}
+      >
+        <Navbar />
 
-      <main>{children}</main>
+        <main>{children}</main>
 
-      <Footer />
+        <Footer />
+      </body>
     </html>
   );
 }
