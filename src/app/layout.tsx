@@ -21,14 +21,14 @@ const oswald = Oswald({
 export const metadata: Metadata = {
   title: "FitLog - Workout Library",
   description:
-    "FitLog is a dark, no-nonsense gym companion for planning and tracking your workouts.",
+    "Browse gym workouts, build today's plan, and track weekly calories with FitLog.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${inter.variable} ${oswald.variable} min-h-full antialiased`}
+        className={`${inter.variable} ${oswald.variable} min-h-screen bg-bg text-text antialiased`}
       >
         <Navbar />
 

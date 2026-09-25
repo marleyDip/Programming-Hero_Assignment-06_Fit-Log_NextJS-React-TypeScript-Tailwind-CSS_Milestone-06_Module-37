@@ -12,6 +12,8 @@
   /* FitLog colors */
   --color-bg: #0c0d10;
   --color-border: #2a2b2f;
+  --color-border-hero: #222630;
+  --color-panel-hero: #15171d;
   --color-panel: #1c1f26;
   --color-panel-2: #171b1a;
   --color-line: #2a302e;
@@ -39,13 +41,14 @@
   }
 
   body {
-    margin: 0;
+    /* margin: 0;
     min-height: 100%;
+    min-height: 100dvh;
     background-color: var(--color-bg);
     color: var(--color-text);
-    font-family: var(--font-inter), system-ui, sans-serif;
+    font-family: var(--font-inter), system-ui, sans-serif; */
 
-    /* @apply font-primary bg-bg text-text min-h-full m-0; */
+    @apply font-primary bg-bg text-text min-h-screen m-0;
   }
 
   button,
@@ -194,7 +197,6 @@
 }
 
 /* ===== ANIMATION  ===== */
-
 @keyframes toast-in {
   from {
     opacity: 0;

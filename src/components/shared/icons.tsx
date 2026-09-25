@@ -12,6 +12,7 @@ export {
   ListChecks,
   Menu,
   Minus,
+  MoveRight,
   Play,
   Plus,
   Search,
