@@ -1,7 +1,7 @@
 "use client";
 
+import { useActiveNav } from "@/hooks/useActiveNav";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Brand from "./shared/Brand";
 import { Menu, X } from "./shared/icons";
@@ -17,32 +17,36 @@ const NAV_LINKS: string[][] = [
 ];
 
 const Navbar = () => {
-  const pathname = usePathname();
+  // const { isActive, handleNavClick } = useActiveNav();
+  const { isActive } = useActiveNav();
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  // Derive the active link from the current route instead of syncing state in an effect.
-  const activeLabel = pathname === "/my-plan" ? "My Plan" : "Workout";
-
-  const isActive = (label: string) => activeLabel === label;
-
   return (
-    <header className="sticky top-0 z-50">
+    <header className="sticky top-0 z-50 w-full">
       <div className="m-1.5 md:m-0 border border-border/60 md:border-b bg-bg/75 rounded-4xl md:rounded-none backdrop-blur-xl backdrop-saturate-150 shadow-[0_4px_20px_rgba(0,0,0,0.18)] transition-all duration-300 hover:border-border hover:shadow-[0_8px_30px_rgba(0,0,0,0.28)]">
         <div className="container-page h-16 md:h-20 flex items-center justify-between gap-4">
           <Brand />
 
           {/* Desktop */}
           <nav className="hidden items-center gap-1 md:flex">
-            {NAV_LINKS.map(([name, href]) => (
-              <Link
-                key={name}
-                href={href}
-                className={`rounded-full px-4 py-2 text-xs/[1.33] transition-colors ${isActive(name) ? "bg-accent text-primary font-semibold" : "text-muted-soft hover:bg-panel-2 hover:text-muted font-medium"}`}
-              >
-                {name}
-              </Link>
-            ))}
+            {NAV_LINKS.map(([name, href]) => {
+              // const isActive =
+              //   name === "My Plan" ? path === "/my-plan" : path === "/";
+
+              // console.log(name, isActive);
+
+              return (
+                <Link
+                  key={name}
+                  href={href}
+                  // onClick={() => handleNavClick(name)}
+                  className={`rounded-full px-4 py-2 text-xs/[1.33]  transition-colors ${isActive(name) ? "bg-accent text-primary font-semibold" : "text-muted-soft hover:bg-panel-2 hover:text-muted font-medium"}`}
+                >
+                  {name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Left Button */}
@@ -95,9 +99,11 @@ const Navbar = () => {
                 <Link
                   key={label}
                   href={href}
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                  }}
+                  // onClick={() => {
+                  //   setIsMenuOpen(false);
+
+                  //   handleNavClick(label);
+                  // }}
                   className={`rounded-full px-4 py-3 text-sm transition-colors ${isActive(label) ? "text-primary font-semibold" : "text-muted-soft font-medium hover:text-muted"}`}
                 >
                   {label}
@@ -130,3 +136,29 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+/* 
+<Link
+  href="/my-plan"
+  className="group relative flex items-center gap-2"
+  aria-label="Plan, items"
+>
+  <span className="relative z-10 text-xs/[1.33] font-medium text-[#d1d5db]">
+    Plan
+  </span>
+
+  <span
+    className="
+      absolute left-7 top-1/2
+      grid -translate-y-1/2 place-items-center
+      rounded-full bg-primary px-1.5 py-0.5
+      text-[11px]/[1.45] font-bold text-black
+      opacity-0 transition-all duration-300
+      group-hover:left-1 group-hover:opacity-100
+    "
+  >
+    0
+  </span>
+</Link>
+
+*/
