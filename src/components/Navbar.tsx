@@ -17,7 +17,8 @@ const NAV_LINKS: string[][] = [
 ];
 
 const Navbar = () => {
-  const { isActive, handleNavClick } = useActiveNav();
+  // const { isActive, handleNavClick } = useActiveNav();
+  const { isActive } = useActiveNav();
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
@@ -39,7 +40,7 @@ const Navbar = () => {
                 <Link
                   key={name}
                   href={href}
-                  onClick={() => handleNavClick(name)}
+                  // onClick={() => handleNavClick(name)}
                   className={`rounded-full px-4 py-2 text-xs/[1.33]  transition-colors ${isActive(name) ? "bg-accent text-primary font-semibold" : "text-muted-soft hover:bg-panel-2 hover:text-muted font-medium"}`}
                 >
                   {name}
@@ -98,11 +99,11 @@ const Navbar = () => {
                 <Link
                   key={label}
                   href={href}
-                  onClick={() => {
-                    setIsMenuOpen(false);
+                  // onClick={() => {
+                  //   setIsMenuOpen(false);
 
-                    handleNavClick(label);
-                  }}
+                  //   handleNavClick(label);
+                  // }}
                   className={`rounded-full px-4 py-3 text-sm transition-colors ${isActive(label) ? "text-primary font-semibold" : "text-muted-soft font-medium hover:text-muted"}`}
                 >
                   {label}

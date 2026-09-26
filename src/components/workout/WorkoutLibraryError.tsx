@@ -1,6 +1,6 @@
 export default function WorkoutLibraryError() {
   return (
-    <section className="border-b border-border">
+    <section className="">
       <div className="container-page py-20">
         <div className="mx-auto flex max-w-md flex-col items-center text-center">
           <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card">
