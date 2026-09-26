@@ -3,8 +3,8 @@ import { MoveRight } from "./shared/icons";
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden border border-border-hero bg-panel-hero container-page my-8 sm:my-12 md:my-16 rounded-2xl">
-      <div className="grid gap-16 md:gap-20 p-3.5 sm:p-7 md:p-8 lg:p-14 md:grid-cols-2 md:items-center">
+    <section className="relative overflow-hidden border border-border-hero bg-panel-hero container-page mt-8 mb-12 md:mt-12 md:mb-16 rounded-2xl">
+      <div className="grid gap-16 md:gap-20 px-3.5 sm:px-7 md:px-8 lg:px-14 py-14 md:grid-cols-2 md:items-center">
         {/* Content */}
         <div className="pt-1.5 space-y-5">
           <p className="text-[11px]/[1.5] font-bold tracking-widest text-primary">

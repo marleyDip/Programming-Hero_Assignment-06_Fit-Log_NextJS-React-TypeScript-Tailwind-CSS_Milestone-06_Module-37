@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${inter.variable} ${oswald.variable} min-h-screen bg-bg text-text antialiased`}
+        className={`${inter.variable} ${oswald.variable} min-h-full bg-bg grid-noise text-text antialiased`}
       >
         <Navbar />
 

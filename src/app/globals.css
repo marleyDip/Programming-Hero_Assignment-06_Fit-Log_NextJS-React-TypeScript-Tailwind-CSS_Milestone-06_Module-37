@@ -11,9 +11,11 @@
 
   /* FitLog colors */
   --color-bg: #0c0d10;
+  --color-card: #191a1d;
   --color-border: #2a2b2f;
   --color-border-hero: #222630;
   --color-panel-hero: #15171d;
+  --color-panel-skeleton: #141517;
   --color-panel: #1c1f26;
   --color-panel-2: #171b1a;
   --color-line: #2a302e;
@@ -38,6 +40,7 @@
 
   html {
     scroll-behavior: smooth;
+    scrollbar-color: #2a2b2f #0b0c0e;
   }
 
   body {
@@ -59,11 +62,6 @@
   ::selection {
     background-color: var(--color-primary);
     color: #080a09;
-  }
-
-  /* Custom Scrollbar tracking */
-  * {
-    scrollbar-color: #2a2b2f #0b0c0e;
   }
 }
 
@@ -128,7 +126,7 @@
   border: 1px solid #2a2b2f;
   border-radius: 9999px;
   background-color: rgb(204 255 0 / 8%);
-  color: var(--color-acid);
+  color: var(--color-primary);
   padding: 0.15rem 0.6rem;
   font-size: 0.65rem;
   font-weight: 700;
