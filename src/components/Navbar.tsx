@@ -1,8 +1,8 @@
 "use client";
 
 import { useFitlog } from "@/context/fitlog-context";
+import { useActiveNav } from "@/hooks/useActiveNav";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Brand from "./shared/Brand";
 import { Menu, X } from "./shared/icons";
@@ -18,14 +18,16 @@ const NAV_LINKS: string[][] = [
 ];
 
 const Navbar = () => {
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  // Derive the active link from the current route instead of syncing state in an effect.
-  const activeLabel = pathname === "/my-plan" ? "My Plan" : "Workout";
+  const { isActive } = useActiveNav();
 
-  const isActive = (label: string) => activeLabel === label;
+  // Derive the active link from the current route instead of syncing state in an effect.
+  // const activeLabel = pathname === "/my-plan" ? "My Plan" : "Workout";
+
+  // const isActive = (label: string) => activeLabel === label;
 
   // Here, store destructure from useFitlog and plan, save destructure from store
   const {
@@ -33,7 +35,7 @@ const Navbar = () => {
   } = useFitlog();
 
   return (
-    <header className="sticky top-0 z-50">
+    <header id="top" className="sticky top-0 z-50">
       <div className="m-1.5 md:m-0 border border-border/60 md:border-b bg-bg/75 rounded-4xl md:rounded-none backdrop-blur-xl backdrop-saturate-150 shadow-[0_4px_20px_rgba(0,0,0,0.18)] transition-all duration-300 hover:border-border hover:shadow-[0_8px_30px_rgba(0,0,0,0.28)]">
         <div className="container-page h-16 md:h-20 flex items-center justify-between gap-4">
           <Brand />

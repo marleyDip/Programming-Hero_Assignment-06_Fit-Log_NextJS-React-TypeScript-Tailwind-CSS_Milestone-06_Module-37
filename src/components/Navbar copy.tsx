@@ -16,7 +16,7 @@ const NAV_LINKS: string[][] = [
   ["My Plan", "/my-plan"],
 ];
 
-const Navbar = () => {
+const Navbar2 = () => {
   // const { isActive, handleNavClick } = useActiveNav();
   const { isActive } = useActiveNav();
 
@@ -135,7 +135,7 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar2;
 
 /* 
 <Link
