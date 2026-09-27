@@ -24,6 +24,7 @@ export {
   SearchX,
   Star,
   Timer,
+  Trash2,
   Trophy,
   X,
 } from "lucide-react";

@@ -78,7 +78,7 @@ export default function SortDropdown({ value, onChange }: SortDropdownProps) {
 
       {/* Dropdown */}
       <div
-        className={`absolute left-0 z-30 mt-2 w-48 origin-top-left transition-all duration-200 md:left-auto md:right-0 md:origin-top-right
+        className={`absolute left-0 z-30 mt-2 w-full origin-top-left transition-all duration-200 md:left-auto md:right-0 md:origin-top-right
         ${
           open
             ? "visible translate-y-0 scale-100 opacity-100"

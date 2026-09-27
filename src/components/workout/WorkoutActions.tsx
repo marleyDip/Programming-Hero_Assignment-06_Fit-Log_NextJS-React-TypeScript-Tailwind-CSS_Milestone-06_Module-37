@@ -12,11 +12,15 @@ export function WorkoutActions({ workout }: { workout: Workout }) {
 
   const { addToPlan, savedWorkout, isInPlan, isSaved, store } = useFitlog();
 
+  // console.log(store);
+  // { plan: Array(5), saved: Array(6), done: Array(0) }
+
   // inside used "store.plan" or destructure it
   const { plan } = store;
   // const { plan, saved, done } = store;
 
-  const full = plan.length >= 5 && !isInPlan(workout.id);
+  // const full = plan.length >= 5 && !isInPlan(workout.id);
+  const full = plan.length >= 5;
 
   return (
     <div className="grid gap-3 sm:grid-cols-2">

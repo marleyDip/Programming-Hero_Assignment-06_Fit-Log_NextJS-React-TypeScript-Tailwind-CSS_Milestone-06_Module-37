@@ -20,7 +20,7 @@ type SortDropdownProps = {
   onChange: (key: SortKey) => void;
 };
 
-export default function SortDropdown({ value, onChange }: SortDropdownProps) {
+export default function SortDropdown1({ value, onChange }: SortDropdownProps) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
