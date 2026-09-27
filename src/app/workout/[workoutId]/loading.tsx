@@ -1,4 +1,4 @@
-export default function LoadingWorkout() {
+export default function Loading() {
   return (
     <div className="grid-noise">
       <section className="container-page py-10 md:py-16">

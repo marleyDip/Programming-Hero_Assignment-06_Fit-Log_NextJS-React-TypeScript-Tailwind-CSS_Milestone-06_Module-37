@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { Inter, Oswald } from "next/font/google";
 
 import Footer from "@/components/Footer";
+import InitialLoader from "@/components/InitialLoader";
 import Navbar from "@/components/Navbar";
 import { FitlogProvider } from "@/context/fitlog-context";
 import { Toaster } from "sonner";
@@ -33,6 +34,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         className={`${inter.variable} ${oswald.variable} min-h-full bg-bg grid-noise text-text antialiased`}
       >
         <FitlogProvider>
+          <InitialLoader />
+
           <Navbar />
 
           <main>{children}</main>
