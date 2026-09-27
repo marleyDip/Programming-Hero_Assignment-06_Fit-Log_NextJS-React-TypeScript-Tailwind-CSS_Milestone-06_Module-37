@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 
 import { Workout } from "@/lib/types";
 import React, { createContext, useContext, useEffect, useState } from "react";
@@ -68,7 +68,7 @@ export function useFitlog2() {
   if (!c) throw new Error("useFitlog must be used inside FitlogProvider");
 
   return c;
-}
+} */
 
 /* his warning is from the newer React/ESLint rule about calling a state setter synchronously inside useEffect.
 
