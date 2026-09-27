@@ -1,5 +1,6 @@
 "use client";
 
+import { useFitlog } from "@/context/fitlog-context";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -26,6 +27,11 @@ const Navbar = () => {
 
   const isActive = (label: string) => activeLabel === label;
 
+  // Here, store destructure from useFitlog and plan, save destructure from store
+  const {
+    store: { plan, saved },
+  } = useFitlog();
+
   return (
     <header className="sticky top-0 z-50">
       <div className="m-1.5 md:m-0 border border-border/60 md:border-b bg-bg/75 rounded-4xl md:rounded-none backdrop-blur-xl backdrop-saturate-150 shadow-[0_4px_20px_rgba(0,0,0,0.18)] transition-all duration-300 hover:border-border hover:shadow-[0_8px_30px_rgba(0,0,0,0.28)]">
@@ -50,28 +56,28 @@ const Navbar = () => {
             <Link
               href="/my-plan"
               className="group flex items-center gap-2"
-              aria-label={`Saved,  items`}
+              aria-label={`Today's plan, ${plan.length} items`}
             >
               <span className="text-xs/[1.33] font-medium text-[#d1d5db]">
                 Plan
               </span>
 
               <span className="grid place-items-center rounded-full px-1.5 py-0 md:py-0.5 text-[11px]/[1.45] font-bold text-black bg-primary transition-all duration-300 group-hover:-translate-y-0.5">
-                0
+                {plan.length}
               </span>
             </Link>
 
             <Link
-              href="/my-plan"
+              href="/my-plan?tab=saved"
               className="group flex items-center gap-2"
-              aria-label={`Saved,  items`}
+              aria-label={`Saved, ${saved.length} items`}
             >
               <span className="text-xs/[1.33] font-medium text-muted-soft">
                 Saved
               </span>
 
               <span className="grid place-items-center rounded-full px-1.5 py-0 md:py-0.5 text-[11px]/[1.45] font-medium text-[#d1d5db] border border-[#2d313b] transition-all duration-300 group-hover:-translate-y-0.5">
-                0
+                {saved.length}
               </span>
             </Link>
           </div>
@@ -108,17 +114,19 @@ const Navbar = () => {
                 <Link
                   onClick={() => setIsMenuOpen(false)}
                   href="/my-plan"
+                  aria-label={`Today's plan, ${plan.length} items`}
                   className="flex flex-1 justify-center rounded-xl bg-primary hover:bg-secondary py-3 text-sm font-black text-black"
                 >
-                  Plan 0
+                  Plan {plan.length}
                 </Link>
 
                 <Link
                   onClick={() => setIsMenuOpen(false)}
                   href="/my-plan?tab=saved"
+                  aria-label={`Saved, ${saved.length} items`}
                   className="flex flex-1 justify-center rounded-xl border border-[#46504b] py-3 text-sm font-black"
                 >
-                  Saved 0
+                  Saved {saved.length}
                 </Link>
               </div>
             </div>

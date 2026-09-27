@@ -298,3 +298,40 @@ export default async function WorkoutDetailPage({ params }: WorkoutPageProps) {
   </div>
   
 */
+
+/* 
+<div className="mt-5 flex flex-wrap gap-2.5">
+  {workout.muscleGroups.map((group) => (
+    <span
+      key={group}
+      className=" group relative overflow-hidden cursor-default rounded-full border border-primary-2 bg-primary-2/80 px-3.5 py-1.5 text-xs/[1.33] font-semibold text-line-2 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-accent hover:bg-accent hover:text-primary hover:shadow-[0_0_18px_rgba(204,255,0,0.25)] active:scale-95"
+    >
+      // Shine effect
+      <span className=" absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
+
+      // Content
+      <span className="relative z-10">{group}</span>
+    </span>
+  ))}
+</div>
+
+<div className="mt-5 flex flex-wrap gap-2.5">
+  {workout.muscleGroups.map((group) => (
+    <span
+      key={group}
+      className=" group relative isolate overflow-hidden rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs/[1.33] font-semibold text-line-2 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-accent/40 hover:bg-accent/10 hover:text-accent hover:shadow-[0_8px_25px_rgba(204,255,0,0.12)]"
+    >
+      // Glass shine
+      <span className=" absolute inset-0 -z-10 bg-linear-to-br from-white/10 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-100" />
+
+      // Neon dot
+      <span className="mr-1.5 inline-block size-1.5 rounded-full bg-white/30 align-middle transition-all duration-300 group-hover:bg-accent group-hover:shadow-[0_0_8px_rgba(204,255,0,0.8)]" />
+
+      {group}
+    </span>
+  ))}
+</div>
+
+
+
+*/
