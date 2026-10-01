@@ -120,9 +120,9 @@ Explore workouts, build today's plan, save exercises, and track completion.
 
 ---
 
-# ✨ Key Features
+# **✨ Key Features**
 
-## 1. 🏋️ Workout Library
+## **1. 🏋️ Workout Library**
 
 FitLog provides a dedicated workout library where users can explore available exercises.
 
@@ -140,7 +140,7 @@ The workout library provides a clean browsing experience across mobile, tablet, 
 
 ---
 
-## 2. 🔎 Search & Sort
+## **2. 🔎 Search & Sort**
 
 Users can quickly find workouts without manually browsing the entire library.
 
@@ -160,32 +160,48 @@ Search and sorting are applied to the currently selected workout collection.
 
 ---
 
-## 3. 📋 Personalized Workout Plan
+## **3. 📋 Personalized Workout Plan**
 
 Users can create their own daily workout plan by adding workouts from the library.
 
-FitLog limits the daily plan to a maximum of:
+FitLog allows a maximum of **5 active workouts** at a time.
 
 ```text
 ┌─────────────────────────┐
-│     MAXIMUM: 5          │
+│   MAXIMUM: 5 ACTIVE     │
 │       WORKOUTS          │
 └─────────────────────────┘
 ```
 
-This keeps the daily plan focused and manageable.
+Completed workouts remain in the plan but no longer count toward the active workout limit.
+
+For example:
+
+```text
+5 Active Workouts
+        ↓
+Complete 1 Workout
+        ↓
+4 Active + 1 Completed
+        ↓
+1 New Workout Slot Available
+```
+
+This keeps the daily plan focused while allowing users to maintain their workout history.
 
 The plan dynamically calculates:
 
 ```text
 🏋️ Total Exercises
+
 ⏱️ Total Duration
+
 🔥 Estimated Calories
 ```
 
 ---
 
-## 4. ❤️ Save Workouts
+## **4. ❤️ Save Workouts**
 
 Users can save workouts that they may want to use later.
 
@@ -196,7 +212,7 @@ This allows users to maintain:
 ```text
 ┌──────────────────────┐
 │     TODAY'S PLAN     │
-│        5 max         │
+│   5 ACTIVE MAXIMUM   │
 └──────────────────────┘
 
            +
@@ -211,17 +227,49 @@ without mixing the two collections.
 
 ---
 
-## 5. ✅ Workout Completion Tracking
+## **5. ✅ Workout Completion Tracking**
 
 Users can mark workouts in their daily plan as completed.
 
 Completed workouts receive a visually distinct state so users can easily identify their progress.
 
+Completed workouts remain in the plan but are removed from the active workout count.
+
 Users can also reopen a completed workout if they accidentally marked it as completed.
 
 ---
 
-## 6. 💾 Persistent User State
+## **6. 🧠 Smart Workout Plan Capacity**
+
+FitLog intelligently manages the active workout limit based on workout completion.
+
+The plan does not simply limit the total number of stored workouts. Instead, it tracks **active workouts separately from completed workouts**.
+
+```text
+┌────────────────────────────────┐
+│        ACTIVE WORKOUTS         │
+│            MAX: 5              │
+└────────────────────────────────┘
+              │
+              ▼
+        Complete Workout
+              │
+              ▼
+     Active Slot Becomes Free
+              │
+              ▼
+       Add New Workout
+```
+
+If all 5 active slots are occupied, attempting to add another workout provides a clear **"Plan is full"** notification.
+
+If a completed workout is reopened and the active limit has already been reached, FitLog prevents the plan from exceeding the 5-active-workout limit.
+
+This provides predictable workout-plan behavior while preserving completed workout history.
+
+---
+
+## **7. 💾 Persistent User State**
 
 FitLog uses browser `localStorage` to persist workout-related state.
 
@@ -244,11 +292,12 @@ fitlog-store-v1
 ```
 
 Refreshing the page does not reset the user's workout state.
+
 This creates a realistic application experience without requiring a backend database for personal workout state.
 
 ---
 
-## 7. 🔔 Interactive Feedback
+## **8. 🔔 Interactive Feedback**
 
 FitLog provides toast notifications after important user actions.
 
@@ -257,15 +306,16 @@ Examples include:
 - ✓ Workout added
 - ✓ Workout removed
 - ✓ Workout saved
-- ✓ Workout already saved
+- ⚠️ Workout already saved
 - ✓ Workout completed
 - ✓ Workout reopened
+- ⚠️ Plan is full
 
-These interactions provide immediate feedback and make the interface feel responsive.
+Different toast styles are used to distinguish successful actions, warnings, information, and errors.
 
 ---
 
-## 8. 📱 Fully Responsive Interface
+## **9. 📱 Fully Responsive Interface**
 
 FitLog is designed for:
 
