@@ -8,10 +8,12 @@ import {
   Repeat2,
   Star,
 } from "@/components/shared/icons";
+
 import { WorkoutActions } from "@/components/workout/WorkoutActions";
 import { getWorkoutById } from "@/lib/api";
 import { Workout } from "@/lib/types";
 
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -58,6 +60,64 @@ interface WorkoutPageProps {
   params: Promise<{
     workoutId: string;
   }>;
+}
+
+// SEO Metadata generation for workout detail page
+export async function generateMetadata({
+  params,
+}: WorkoutPageProps): Promise<Metadata> {
+  const { workoutId } = await params;
+
+  const workout = await getWorkoutById(workoutId);
+
+  if (!workout) {
+    return {
+      title: "Workout Not Found | FitLog",
+      description: "The requested workout could not be found.",
+    };
+  }
+
+  const muscleGroups = workout.muscleGroups.join(", ");
+
+  return {
+    title: `${workout.name} | FitLog`,
+    description: `Explore ${workout.name}, a ${workout.difficulty.toLowerCase()} workout targeting ${muscleGroups}. View equipment, sets, reps, duration, calories, rating, and step-by-step instructions.`,
+
+    keywords: [
+      workout.name,
+      ...workout.muscleGroups,
+      "workout",
+      "fitness",
+      "exercise",
+      "FitLog",
+    ],
+
+    // Canonical URL
+    alternates: {
+      canonical: `https://sofian-fit-log.vercel.app/workout/${workout.id}`,
+    },
+
+    openGraph: {
+      title: `${workout.name} | FitLog`,
+      description: `Explore ${workout.name} on FitLog. View workout details, instructions, duration, calories, and more.`,
+      images: [
+        {
+          url: workout.image,
+          width: 1200,
+          height: 630,
+          alt: workout.name,
+        },
+      ],
+      type: "article",
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `${workout.name} | FitLog`,
+      description: `Explore ${workout.name} on FitLog.`,
+      images: [workout.image],
+    },
+  };
 }
 
 export default async function WorkoutDetailPage({ params }: WorkoutPageProps) {
