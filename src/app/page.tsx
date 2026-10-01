@@ -1,7 +1,15 @@
 import Hero from "@/components/Hero";
 import WorkoutLibrary from "@/components/workout/WorkoutLibrary";
 import WorkoutLibraryLoading from "@/components/workout/WorkoutLibraryLoading";
+
+import { Metadata } from "next";
 import { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: "FitLog | Home",
+  description:
+    "Explore workouts, build your daily training plan, save exercises, and track your progress with FitLog.",
+};
 
 export default async function Home() {
   return (

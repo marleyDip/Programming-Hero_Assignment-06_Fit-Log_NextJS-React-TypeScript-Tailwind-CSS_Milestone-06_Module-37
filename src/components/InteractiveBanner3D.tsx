@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-export default function HeroImage() {
+export default function InteractiveBanner3D() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

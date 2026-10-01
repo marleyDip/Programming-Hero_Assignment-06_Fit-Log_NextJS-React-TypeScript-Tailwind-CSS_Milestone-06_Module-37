@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-export default function HeroImage() {
+export default function InteractiveBanner3DMultiLayer() {
   const sceneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function HeroImage() {
     >
       {/* DEPTH 0 — Ambient background */}
       <div
-        className=" absolute left-1/2 top-1/2 h-[75%] w-[75%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-500/10 blur-[80px] transition-transform duration-700 ease-out group-hover:scale-110"
+        className=" absolute left-1/2 top-1/2 h-[75%] w-[75%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-500/10 blur-[80px] transition-transform duration-700 ease-out group-hover:scale-110 animate-pulse"
         style={{
           transform:
             "translate3d(calc(-50% + var(--mouse-x) * -15px), calc(-50% + var(--mouse-y) * -15px), -100px)",
@@ -99,7 +99,7 @@ export default function HeroImage() {
 
       {/* DEPTH 4 — Floating workout card */}
       <div
-        className="absolute left-[1%] bottom-[14%] z-20 rounded-2xl border border-white/10 bg-black/45 px-4 py-3 shadow-xl backdrop-blur-xl transition-transform duration-200 ease-out"
+        className="absolute left-[-10%] bottom-[14%] z-20 rounded-2xl border border-white/10 bg-black/45 px-4 py-3 shadow-xl backdrop-blur-xl transition-transform duration-200 ease-out animate-bounce"
         style={{
           transform:
             "translate3d(calc(var(--mouse-x) * 28px), calc(var(--mouse-y) * 28px), 140px) rotateX(calc(var(--mouse-y) * -5deg)) rotateY(calc(var(--mouse-x) * 5deg))",
@@ -118,7 +118,7 @@ export default function HeroImage() {
 
       {/* DEPTH 5 — Workout statistics */}
       <div
-        className="absolute right-[0%] top-[17%] z-20 rounded-2xl border border-white/10 bg-black/45 px-4 py-3 shadow-xl backdrop-blur-xl transition-transform duration-200 ease-out"
+        className="absolute right-[0%] top-[17%] z-20 rounded-2xl border border-white/10 bg-black/45 px-4 py-3 shadow-xl backdrop-blur-xl transition-transform duration-200 ease-out animate-bounce"
         style={{
           transform:
             "translate3d(calc(var(--mouse-x) * 38px), calc(var(--mouse-y) * 38px), 180px) rotateX(calc(var(--mouse-y) * -7deg)) rotateY(calc(var(--mouse-x) * 7deg))",

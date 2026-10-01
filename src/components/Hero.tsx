@@ -1,4 +1,4 @@
-import InteractiveBanner from "./InteractiveBanner";
+import InteractiveBanner3DMultiLayer from "./InteractiveBanner3DMultiLayerMouseParallax";
 import { MoveRight } from "./shared/icons";
 
 const Hero = () => {
@@ -14,7 +14,7 @@ const Hero = () => {
           <h1 className="mt-0.5 uppercase font-secondary font-bold leading-none tracking-tight text-4xl sm:text-5xl md:text-6xl text-text">
             Train with intent.
             <br />
-            Log every set.
+            <span className="text-secondary/70">Log every set.</span>
           </h1>
 
           <p className="max-w-120 text-muted-soft text-sm sm:text-base leading-normal">
@@ -24,7 +24,7 @@ const Hero = () => {
 
           <a
             href="#library"
-            className="group mt-1 md:mt-2 inline-flex items-center gap-2 rounded-md px-4 py-2.5 md:px-6 md:py-3 bg-primary text-black shadow-sm text-xs leading-4 tracking-wide font-bold uppercase"
+            className="group mt-1 md:mt-2 inline-flex items-center gap-2 rounded-md px-4 py-2.5 md:px-6 md:py-3 bg-primary text-black shadow-sm text-xs leading-4 tracking-wide font-bold uppercase hover:bg-primary-2/90 transition-colors duration-300"
           >
             Browse workouts
             <MoveRight
@@ -48,7 +48,7 @@ const Hero = () => {
           </div>
         </div> */}
 
-        <InteractiveBanner />
+        <InteractiveBanner3DMultiLayer />
       </div>
     </section>
   );
