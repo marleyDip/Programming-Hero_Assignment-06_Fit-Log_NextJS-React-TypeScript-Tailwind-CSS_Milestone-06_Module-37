@@ -48,13 +48,26 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             toastOptions={{
               classNames: {
                 toast:
-                  "group !border !border-white/10 !bg-[#141816]/95 !text-[#f5f6f2] !shadow-[0_12px_40px_rgba(0,0,0,0.45)] !backdrop-blur-xl",
+                  "group !border !border-white/10 !text-[#f5f6f2] !shadow-[0_12px_40px_rgba(0,0,0,0.45)] !backdrop-blur-xl",
+
+                success: "!border-emerald-400/20 !bg-emerald-950/90",
+
+                warning: "!border-amber-400/20 !bg-amber-950/90",
+
+                info: "!border-sky-400/20 !bg-sky-950/90",
+
+                error: "!border-red-400/20 !bg-red-950/90",
+
                 title: "!text-sm !font-semibold !text-[#f5f6f2]",
+
                 description: "!text-xs !text-[#9da6a1]",
+
                 actionButton:
                   "!bg-[#ccff00] !text-[#0b0c0e] !font-semibold hover:!bg-[#d9ff4d]",
+
                 cancelButton: "!bg-white/5 !text-[#9da6a1] hover:!bg-white/10",
               },
+
               style: {
                 borderRadius: "16px",
                 padding: "14px 16px",

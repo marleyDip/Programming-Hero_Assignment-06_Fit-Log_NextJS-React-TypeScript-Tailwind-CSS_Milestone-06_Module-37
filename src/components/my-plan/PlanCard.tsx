@@ -20,7 +20,7 @@ export default function PlanCard({
     removeFromPlan,
     removeSaved,
     toggleDone,
-    store: { done },
+    store: { done, plan },
   } = useFitlog();
 
   const isDone = done.includes(workout.id);
@@ -90,7 +90,7 @@ export default function PlanCard({
             onClick={() => {
               removeSaved(workout.id);
 
-              toast.success("Removed from saved", {
+              toast.error("Removed from saved", {
                 description: "Workout removed from your saved list.",
               });
             }}
@@ -104,7 +104,7 @@ export default function PlanCard({
             {/* Plan Toggle Done button */}
             <button
               type="button"
-              onClick={() => {
+              /* onClick={() => {
                 toggleDone(workout.id);
 
                 toast.success(
@@ -115,6 +115,53 @@ export default function PlanCard({
                       : "Nice work. Workout marked as completed.",
                   },
                 );
+              }} */
+              onClick={() => {
+                if (isDone) {
+                  // Current workout is completed.
+                  // Reopening it will increase the active workout count by 1.
+                  const activeCount = plan.filter(
+                    (item) => !done.includes(item.id),
+                  ).length;
+
+                  if (activeCount >= 5) {
+                    toast.warning("Plan is full", {
+                      description:
+                        "Complete or remove an active workout before reopening this one.",
+                    });
+                    return;
+                  }
+
+                  toggleDone(workout.id);
+
+                  toast.info("Workout reopened", {
+                    description: "Workout moved back to your active plan.",
+                  });
+
+                  return;
+
+                  // toggleDone(workout.id);
+
+                  // if (activeCount + 1 > 5) {
+                  //   toast.warning("Plan is full", {
+                  //     description:
+                  //       "This workout is active again. Complete a workout before adding another.",
+                  //   });
+                  // } else {
+                  //   toast.info("Workout reopened", {
+                  //     description: "Workout moved back to your active plan.",
+                  //   });
+                  // }
+
+                  // return;
+                }
+
+                // Mark workout as completed
+                toggleDone(workout.id);
+
+                toast.success("Workout completed", {
+                  description: "Nice work. Workout marked as completed.",
+                });
               }}
               aria-label={isDone ? "Mark as active" : "Mark as done"}
               className={`group relative grid size-9 place-items-center overflow-hidden rounded-full border transition-all duration-300 cursor-pointer ${
@@ -151,7 +198,7 @@ export default function PlanCard({
               onClick={() => {
                 removeFromPlan(workout.id);
 
-                toast.success("Workout Plan updated", {
+                toast.error("Workout Plan updated", {
                   description: `${workout.name} removed from today's plan.`,
                 });
               }}

@@ -16,10 +16,13 @@ type Store = {
   done: number[];
 };
 
+type AddToPlanResult = "added" | "already-in-plan" | "full";
+
 type FitlogContextValue = {
   store: Store;
 
-  addToPlan: (w: Workout) => void;
+  // addToPlan: (w: Workout) => void;
+  addToPlan: (w: Workout) => AddToPlanResult;
   removeFromPlan: (id: number) => void;
 
   savedWorkout: (w: Workout) => void;
@@ -67,7 +70,37 @@ export function FitlogProvider({ children }: { children: React.ReactNode }) {
   }, [store]);
 
   // Add workout to plan
-  const addToPlan = useCallback((workout: Workout) => {
+  const addToPlan = useCallback((workout: Workout): AddToPlanResult => {
+    let result: AddToPlanResult = "added";
+
+    setStore((prev) => {
+      // Already in today's plan
+      if (prev.plan.some((item) => item.id === workout.id)) {
+        result = "already-in-plan";
+        return prev;
+      }
+
+      // Only incomplete workouts occupy active slots
+      const activeCount = prev.plan.filter(
+        (item) => !prev.done.includes(item.id),
+      ).length;
+
+      // Maximum 5 active workouts
+      if (activeCount >= 5) {
+        result = "full";
+        return prev;
+      }
+
+      return {
+        ...prev,
+        plan: [...prev.plan, workout],
+      };
+    });
+
+    return result;
+  }, []);
+
+  /* const addToPlan = useCallback((workout: Workout) => {
     setStore((prev) => {
       // Already in plan;
       if (prev.plan.some((item) => item.id === workout.id)) {
@@ -84,7 +117,7 @@ export function FitlogProvider({ children }: { children: React.ReactNode }) {
         plan: [...prev.plan, workout],
       };
     });
-  }, []);
+  }, []); */
 
   // Remove workout from plan
   const removeFromPlan = useCallback((id: number) => {

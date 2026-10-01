@@ -25,7 +25,7 @@ type MyPlanClientProps = {
 
 export default function MyPlanClient({ initialTab }: MyPlanClientProps) {
   const {
-    store: { plan, saved },
+    store: { plan, saved, done },
   } = useFitlog();
 
   /* const searchParams = useSearchParams();
@@ -48,9 +48,14 @@ export default function MyPlanClient({ initialTab }: MyPlanClientProps) {
     [list, search, sort],
   );
 
-  const minutes = plan.reduce((total, workout) => total + workout.duration, 0);
+  const activePlan = plan.filter((workout) => !done.includes(workout.id));
 
-  const calories = plan.reduce(
+  const minutes = activePlan.reduce(
+    (total, workout) => total + workout.duration,
+    0,
+  );
+
+  const calories = activePlan.reduce(
     (total, workout) => total + workout.caloriesBurned,
     0,
   );
@@ -95,7 +100,11 @@ export default function MyPlanClient({ initialTab }: MyPlanClientProps) {
 
       {/* Metrics */}
       <div className="mt-6 md:mt-8 grid gap-3 sm:grid-cols-3">
-        <Metric icon={<ListChecks />} label="Exercises" value={plan.length} />
+        <Metric
+          icon={<ListChecks />}
+          label="Exercises"
+          value={activePlan.length}
+        />
 
         <Metric icon={<Clock3 />} label="Minutes" value={minutes} />
 
@@ -109,7 +118,7 @@ export default function MyPlanClient({ initialTab }: MyPlanClientProps) {
           <TabButton
             active={tab === "plan"}
             label="Today's Plan"
-            count={plan.length}
+            count={activePlan.length}
             onClick={() => handleTabChange("plan")}
           />
 
@@ -145,7 +154,7 @@ export default function MyPlanClient({ initialTab }: MyPlanClientProps) {
             <button
               type="button"
               onClick={() => setSearch("")}
-              className="text-[10px] font-bold uppercase tracking-widest text-[#89918d] transition-colors hover:text-primary-2 cursor-grab"
+              className="text-[10px] font-bold uppercase tracking-widest text-[#89918d] transition-colors hover:text-secondary cursor-grab"
             >
               Clear search
             </button>

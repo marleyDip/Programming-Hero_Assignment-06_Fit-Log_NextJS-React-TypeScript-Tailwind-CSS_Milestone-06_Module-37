@@ -31,8 +31,12 @@ const Navbar = () => {
 
   // Here, store destructure from useFitlog and plan, save destructure from store
   const {
-    store: { plan, saved },
+    store: { plan, saved, done },
   } = useFitlog();
+
+  const activePlanCount = plan.filter(
+    (workout) => !done.includes(workout.id),
+  ).length;
 
   return (
     <header id="top" className="sticky top-0 z-50">
@@ -95,7 +99,7 @@ const Navbar = () => {
 
               {/* Floating badge */}
               <span className="absolute -left-1.5 -top-2 grid min-w-5 h-5 place-items-center rounded-full border border-secondary/50 bg-primary px-1 text-[9px] font-black leading-none text-[#0b0c0e] shadow-[0_0_12px_rgba(204,255,0,0.3)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_18px_rgba(204,255,0,0.5)]">
-                {plan.length}
+                {activePlanCount}
               </span>
             </Link>
 
@@ -149,7 +153,7 @@ const Navbar = () => {
                   aria-label={`Today's plan, ${plan.length} items`}
                   className="flex flex-1 justify-center rounded-xl bg-primary hover:bg-secondary py-3 text-sm font-black text-black"
                 >
-                  Plan {plan.length}
+                  Plan {activePlanCount}
                 </Link>
 
                 <Link
