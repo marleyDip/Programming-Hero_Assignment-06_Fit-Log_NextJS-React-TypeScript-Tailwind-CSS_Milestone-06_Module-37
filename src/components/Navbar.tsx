@@ -54,7 +54,7 @@ const Navbar = () => {
           </nav>
 
           {/* Left Button */}
-          <div className="hidden items-center gap-6 sm:flex">
+          {/* <div className="hidden items-center gap-6 sm:flex">
             <Link
               href="/my-plan"
               className="group flex items-center gap-2"
@@ -79,6 +79,36 @@ const Navbar = () => {
               </span>
 
               <span className="grid place-items-center rounded-full px-1.5 py-0 md:py-0.5 text-[11px]/[1.45] font-medium text-[#d1d5db] border border-[#2d313b] transition-all duration-300 group-hover:-translate-y-0.5">
+                {saved.length}
+              </span>
+            </Link>
+          </div> */}
+
+          <div className="hidden items-center gap-3 md:gap-4 sm:flex">
+            {/* Plan */}
+            <Link
+              href="/my-plan"
+              aria-label={`Today's plan, ${plan.length} items`}
+              className="group relative flex h-9 items-center rounded-full border border-white/10 bg-white/3 px-4 pr-5 text-[#d1d5db] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-primary/6 hover:text-white hover:shadow-[0_8px_24px_rgba(204,255,0,0.08)]"
+            >
+              <span className="text-xs font-semibold tracking-wide">Plan</span>
+
+              {/* Floating badge */}
+              <span className="absolute -left-1.5 -top-2 grid min-w-5 h-5 place-items-center rounded-full border border-secondary/50 bg-primary px-1 text-[9px] font-black leading-none text-[#0b0c0e] shadow-[0_0_12px_rgba(204,255,0,0.3)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_18px_rgba(204,255,0,0.5)]">
+                {plan.length}
+              </span>
+            </Link>
+
+            {/* Saved */}
+            <Link
+              href="/my-plan?tab=saved"
+              aria-label={`Saved, ${saved.length} items`}
+              className="group relative flex h-9 items-center rounded-full border border-white/10 bg-white/3 px-4 pr-5 text-[#9da6a1] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/6 hover:text-white hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
+            >
+              <span className="text-xs font-semibold tracking-wide">Saved</span>
+
+              {/* Floating badge */}
+              <span className="absolute -left-1.5 -top-2 grid min-w-5 h-5 place-items-center rounded-full border border-[#0b0c0e] bg-[#202522] px-1 text-[9px] font-bold leading-none text-[#d1d5db] transition-all duration-300 group-hover:scale-110 group-hover:border-white/20 group-hover:bg-[#2a312d]">
                 {saved.length}
               </span>
             </Link>
